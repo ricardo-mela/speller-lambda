@@ -5,7 +5,7 @@ import boto3
 import botocore
 def lambda_handler(event,context):
   s3 = boto3.resource('s3')
-  obj = s3.Object('rs-97-emulator-helper','text.txt')
+  obj = s3.Object('bucket-name','text.txt')
   in_file = obj.get()['Body'].read().decode('utf-8')
   print in_file
   words = in_file.splitlines()
@@ -34,7 +34,7 @@ def lambda_handler(event,context):
   recording = response['AudioStream'].read()
 
   s3 = boto3.resource('s3')
-  audio = s3.Object('rs-97-emulator-helper','speech.mp3')
+  audio = s3.Object('bucket-name','speech.mp3')
   audio.put(Body=recording)
   return {
     "Text": text

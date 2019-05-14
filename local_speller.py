@@ -34,7 +34,7 @@ response = polly.synthesize_speech(VoiceId='Joanna',
 recording = response['AudioStream'].read()
 
 s3 = boto3.resource('s3')
-audio = s3.Object('rs-97-emulator-helper','speech.mp3')
+audio = s3.Object('bucket-name','speech.mp3')
 audio.put(Body=recording)
 
 #file = open('speech.mp3', 'w')
